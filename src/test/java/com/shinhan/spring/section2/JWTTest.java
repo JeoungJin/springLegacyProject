@@ -36,24 +36,15 @@ public class JWTTest {
 	
 	@Autowired
 	MemberService memberService;
-
-	// 테스트용 secretKey (HS256을 위해 최소 256bit = 32bytes 이상 필요)
-	// private final String secretKey =
-	// Base64.getEncoder().encodeToString("my-test-jwt-secret-key-1234567890".getBytes());
-
-	@BeforeAll
-	void setUp() {
-		// 60초 유효기간
-		// jwtUtil = new JwtUtil(secretKey, 60);
-	}
+ 
 
 	//@Test
 	public void testJwtUtilIsLoaded() {
 		assertNotNull(jwtUtil);
-		// 필요시 리플렉션이나 메서드 추가로 내부 필드 확인
+		 
 	}
 
-	//1.회원가입
+ 
 	@Test
 	 public void insertTest() {
 		 MemberEntity member = MemberEntity.builder()
@@ -65,7 +56,7 @@ public class JWTTest {
 		 AccessRefreshTokenDTO token = memberService.insert(member);
 		 System.out.println(token);
 	 }
-	//2. mid로 Member얻기 
+	//2. mid 
 	//@Test
 	public void getmember() {
 		 String inputPass = "1234";
@@ -82,7 +73,7 @@ public class JWTTest {
 		String token = jwtUtil.createAccessToken(member);
 		// then
 		assertNotNull(token);
-		System.out.println("생성된 토큰: " + token);
+		System.out.println("testCreateAccessToken: " + token);
 		Claims claims = jwtUtil.parseClaims(token);
 		assertEquals(member.getMid(), claims.get("mid"));
 		assertEquals(member.getMname(), claims.get("mname"));
@@ -94,53 +85,52 @@ public class JWTTest {
 		MemberEntity member = MemberEntity.builder().mid("zzilre").mname("jin").member_mrole_data(MemberRoleEnum.USER).build();
 		String token = jwtUtil.createAccessToken(member);
 		boolean result = jwtUtil.validateToken(token);
-		assertTrue(result, "토큰이 유효해야 합니다.");
+		assertTrue(result, "testValidateToken.");
 	}
-	
-	//만료test
+ 
 	//@Test
-    public void accessToken_만료_테스트() throws InterruptedException {
-        //1.회원조회
+    public void accessToken_1() throws InterruptedException {
+        //1.회 
 		String inputPass = "1234";
 		MemberEntity member = memberService.findByMid("zzilre",inputPass );
 		assertNotNull(member);
 		
-        //  2. Access Token (1초짜리) 발급
+        //  2. Access Token  
         String shortAccessToken = jwtUtil.createShortLivedAccessToken(member, 1L);
         System.out.println("shortAccessToken: " + shortAccessToken);
         
-        //  3. 토큰이 아직 살아있을 수 있으므로 2초 대기 → 만료 유도
+        //  3.  
         Thread.sleep(2000);
         
         
-        //  4. Access Token 유효성 검사 (만료되어야 함)
+        //  4. Access Token  
         boolean isValid = jwtUtil.validateToken(shortAccessToken);
-        assertFalse(isValid, "AccessToken은 만료되어야 합니다.");
+        assertFalse(isValid, "AccessToken  .");
         
         
-        //5. Refresh Token 생성 및 DB 저장
+        //5. Refresh Token  
         String refreshToken = jwtUtil.createRefreshToken(member);
         member.setRefreshToken(refreshToken);
-        memberService.updateRefreshToken(member.getMid(), refreshToken);  // repository 경유 저장
+        memberService.updateRefreshToken(member.getMid(), refreshToken);  // repository  
 
     
-        // 6. RefreshToken 검증
+        // 6. RefreshToken  
         boolean refreshValid = jwtUtil.validateToken(refreshToken);
-        assertTrue(refreshValid, "RefreshToken은 유효해야 합니다.");
+        assertTrue(refreshValid, "RefreshToken ");
 
-        // 7. RefreshToken에서 mid 추출
+        // 7. RefreshToken 
         String mid = jwtUtil.getUsernameFromToken(refreshToken);
         System.out.println("mid:" + mid);
         MemberEntity memberFromDB = memberService.findByMidOnly(mid);
         System.out.println(memberFromDB);
-        assertEquals(refreshToken, memberFromDB.getRefreshToken(), "DB와 토큰이 일치해야 함");
+        assertEquals(refreshToken, memberFromDB.getRefreshToken(), "DB ");
 
-        // 8. AccessToken 재발급
+        // 8. AccessToken 
         String newAccessToken = jwtUtil.createAccessToken(memberFromDB);
         assertNotNull(newAccessToken);
-        System.out.println("재발급된 AccessToken: " + newAccessToken);
+        System.out.println("占쏙옙薩瀕占� AccessToken: " + newAccessToken);
 
-        // 9. 새 AccessToken 유효성 확인
+        // 9.   AccessToken 
         assertTrue(jwtUtil.validateToken(newAccessToken));
 	}
 }
