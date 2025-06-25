@@ -7,39 +7,35 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.shinhan.spring.util.DBUtil;
 
-//ºñÁö´Ï½º ·ÎÁ÷(¾÷¹«·ÎÁ÷)Áß¿¡¼­ µ¥ÀÌÅÍº£ÀÕ °ü·Ã¾÷¹«´Â DAO¿¡¼­ ÀÛ¼ºÇÑ´Ù. 
-//CRUDÀÛ¾÷ 
-//DAO(Data Access Object)
+ 
 
 
-@Repository //@Componet + DAO¿ªÇÒ 
+@Repository //@Componet + DAOï¿½ï¿½ï¿½ï¿½ 
 //@Setter
 public class DeptDAO_JDBC implements DeptDAOInterface{
 	
 	
-	//Å¸ÀÔÀÌ °°À¸¸é ÀÚµ¿À¸·Î ÁÖÀÔÇÑ´Ù. 
+	//Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½. 
 	@Autowired
 	//@Qualifier("dataSourceOriginal")  
 	DataSource ds;
 	
-	//DB¿¬°á, ÇØÁ¦½Ã »ç¿ë
+	//DBï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	Connection conn;
-	//SQL¹®À» DB¿¡ Àü¼Û
+	//SQLï¿½ï¿½ï¿½ï¿½ DBï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	Statement st;
 	PreparedStatement pst;
-	//Select°á°ú
+	//Selectï¿½ï¿½ï¿½
 	ResultSet rs;
-	//insert,delete,update°á°ú´Â ¿µÇâ¹ÞÀº °Ç¼ö 
+	//insert,delete,updateï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¼ï¿½ 
 	int resultCount;
 	
 	static final String SELECT_ALL = "select * from departments order by 1";
@@ -50,7 +46,7 @@ public class DeptDAO_JDBC implements DeptDAOInterface{
 								+ " where department_id=?";
 	static final String DELETE = "delete from departments where department_id=?";
 	
-	//1.Select(Read)..¸ðµÎº¸±â 
+	//1.Select(Read)..ï¿½ï¿½Îºï¿½ï¿½ï¿½ 
 	public List<DeptDTO> selectAll() {
 		List<DeptDTO> deptlist = new ArrayList<DeptDTO>();
 		//conn = DBUtil.getConnection();
@@ -71,7 +67,7 @@ public class DeptDAO_JDBC implements DeptDAOInterface{
 		
 		return deptlist;
 	}
-	//2.Select(Read)..»ó¼¼º¸±â
+	//2.Select(Read)..ï¿½ó¼¼ºï¿½ï¿½ï¿½
 	public DeptDTO selectById(int deptid) {
 		DeptDTO dept = null;
 		//conn = DBUtil.getConnection();

@@ -6,12 +6,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+
 public class DateUtil {
     //date->String
 	//String->date 
 	public static String converToString(Date d1) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
-		String str = sdf.format(d1); //?‚ ì§?->ë¬¸ì 
+		String str = sdf.format(d1); //?ï¿½ï¿½ï¿½?->ë¬¸ì 
 		return str;
 	}
 	

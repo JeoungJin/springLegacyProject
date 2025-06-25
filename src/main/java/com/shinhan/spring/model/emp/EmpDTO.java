@@ -12,6 +12,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -23,10 +24,10 @@ public class EmpDTO {
 	private String email;          
 	private String phone_number;   
 	
-	//JSON생성시 Date가 Long으로 가는 것이 default임, 날짜format으로 만들어 보내기 
+	//JSON 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date hire_date;     
-	//JSON생성시 속성이름이 다른 경우 추가함 
+	//JSON 
 	@JsonProperty("job_id")
 	private String job_id;
 	

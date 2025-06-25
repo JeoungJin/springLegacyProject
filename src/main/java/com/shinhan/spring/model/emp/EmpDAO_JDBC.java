@@ -18,30 +18,31 @@ import java.util.stream.Collectors;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.shinhan.spring.util.DBUtil;
 import com.shinhan.spring.util.DateUtil;
 
+ 
 
 
-//DAO(Data Access Object) : DB¿¡ CRUDÀÛ¾÷(select, Insert, update, delete)
-//Statement´Â SQL¹®À» º¸³»´Â Åë·Î ...¹ÙÀÎµùº¯¼ö Áö¿øÇÏÁö¾ÊÀ½ 
-//PreparedStatement : Statement»ó¼Ó¹ÞÀ½, ¹ÙÀÎµùº¯¼ö Áö¿ø, spÈ£Ãâ Áö¿ø¾ÈÇÔ
-//CallableStatement :spÈ£Ãâ Áö¿ø
+
+//DAO(Data Access Object) : DBï¿½ï¿½ CRUDï¿½Û¾ï¿½(select, Insert, update, delete)
+//Statementï¿½ï¿½ SQLï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ...ï¿½ï¿½ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+//PreparedStatement : Statementï¿½ï¿½Ó¹ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, spÈ£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//CallableStatement :spÈ£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 
 @Repository
 public class EmpDAO_JDBC  implements EmpDAOInterface{
 
-	@Autowired  //Å¸ÀÔÀÌ °°À¸¸é ÀÚµ¿À¸·Î ÁÖÀÔÇÑ´Ù. (newÇØ¼­ Injection)
-	//@Qualifier("dataSourceOriginal")   //°°ÀºÅ¸ÀÔÀÌ ¿©·¯°³ÀÎ °æ¿ì ÀÌ¸§À» »ç¿ëÇÑ´Ù. 
+	@Autowired  //Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½. (newï¿½Ø¼ï¿½ Injection)
+	//@Qualifier("dataSourceOriginal")   //ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½. 
 	DataSource ds;
 	
 	Connection conn;
 	
-	// Stored Procedure¸¦ ½ÇÇàÇÏ±â (Á÷¿ø¹øÈ£¸¦ ¹Þ¾Æ¼­ ÀÌ¸ÞÀÏ°ú ±Þ¿©¸¦ return)
+	// Stored Procedureï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½Þ¾Æ¼ï¿½ ï¿½Ì¸ï¿½ï¿½Ï°ï¿½ ï¿½Þ¿ï¿½ï¿½ï¿½ return)
 	public EmpDTO execute_sp(int empid) {
 		EmpDTO emp = null;
 		
@@ -130,7 +131,7 @@ public class EmpDAO_JDBC  implements EmpDAOInterface{
 		return result;
 	}
 
-	// ¼öÁ¤
+	// ï¿½ï¿½ï¿½ï¿½
 	public int empUpdate2(EmpDTO emp) {
 		int result = 0;
 	 
@@ -170,7 +171,7 @@ public class EmpDAO_JDBC  implements EmpDAOInterface{
 		return result;
 	}
 
-	// ÀÔ·Â
+	// ï¿½Ô·ï¿½
 	public int empInsert(EmpDTO emp) {
 		int result = 0;
 		 
@@ -210,7 +211,7 @@ public class EmpDAO_JDBC  implements EmpDAOInterface{
 		return result;
 	}
 
-	// »èÁ¦
+	// ï¿½ï¿½ï¿½ï¿½
 	public int empDeleteById(int empid) {
 		int result = 0;
 		 
@@ -243,8 +244,8 @@ public class EmpDAO_JDBC  implements EmpDAOInterface{
 
 		try {
 			conn = ds.getConnection();
-			st = conn.prepareStatement(sql); // SQL¹®À» ÁØºñÇÑ´Ù.
-			st.setString(1, "%" + jobid + "%"); // 1¹øÂ° ?¿¡ °ªÀ» settingÇÑ´Ù.
+			st = conn.prepareStatement(sql); // SQLï¿½ï¿½ï¿½ï¿½ ï¿½Øºï¿½ï¿½Ñ´ï¿½.
+			st.setString(1, "%" + jobid + "%"); // 1ï¿½ï¿½Â° ?ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ settingï¿½Ñ´ï¿½.
 			st.setInt(2, salary);
 			Date d = DateUtil.convertToSQLDate(DateUtil.convertToDate(hdate));
 			st.setDate(3, d);
@@ -276,12 +277,12 @@ public class EmpDAO_JDBC  implements EmpDAOInterface{
 		String sql = "select * from employees where job_id = ? and department_id = ?";
 		try {
 			conn = ds.getConnection();
-			st = conn.prepareStatement(sql); // SQL¹®À» ÁØºñÇÑ´Ù.
-			st.setString(1, job); // 1¹øÂ° ?¿¡ °ªÀ» settingÇÑ´Ù.
+			st = conn.prepareStatement(sql); // SQLï¿½ï¿½ï¿½ï¿½ ï¿½Øºï¿½ï¿½Ñ´ï¿½.
+			st.setString(1, job); // 1ï¿½ï¿½Â° ?ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ settingï¿½Ñ´ï¿½.
 			st.setInt(2, dept);
 			
 			String sqlPreview = DBUtil.buildDebugSQL(sql, job,dept);
-			System.out.println("SQL¹®:" + sqlPreview);
+			System.out.println("SQLï¿½ï¿½:" + sqlPreview);
 			
 			
 			rs = st.executeQuery();
@@ -298,7 +299,7 @@ public class EmpDAO_JDBC  implements EmpDAOInterface{
 		return emplist;
 	}
 
-	// jobÀ¸·Î Á÷¿øÁ¶È¸
+	// jobï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¸
 	public List<EmpDTO> selectByJob(String job) {
 		List<EmpDTO> emplist = new ArrayList<>();
 		 
@@ -307,8 +308,8 @@ public class EmpDAO_JDBC  implements EmpDAOInterface{
 		String sql = "select * from employees where job_id = ? ";
 		try {
 			conn = ds.getConnection();
-			st = conn.prepareStatement(sql); // SQL¹®À» ÁØºñÇÑ´Ù.
-			st.setString(1, job); // 1¹øÂ° ?¿¡ °ªÀ» settingÇÑ´Ù.
+			st = conn.prepareStatement(sql); // SQLï¿½ï¿½ï¿½ï¿½ ï¿½Øºï¿½ï¿½Ñ´ï¿½.
+			st.setString(1, job); // 1ï¿½ï¿½Â° ?ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ settingï¿½Ñ´ï¿½.
 			rs = st.executeQuery();
 			while (rs.next()) {
 				EmpDTO emp = makeEmp(rs);
@@ -323,7 +324,7 @@ public class EmpDAO_JDBC  implements EmpDAOInterface{
 		return emplist;
 	}
 
-	// ºÎ¼­ÀÇ Á÷¿øÁ¶È¸
+	// ï¿½Î¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¸
 	public List<EmpDTO> selectByDept(int deptid) {
 		List<EmpDTO> emplist = new ArrayList<>();
 		 
@@ -347,7 +348,7 @@ public class EmpDAO_JDBC  implements EmpDAOInterface{
 		return emplist;
 	}
 
-	// Á÷¿ø¹øÈ£·Î Á÷¿øÁ¤º¸¸¦ »ó¼¼º¸±â
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ó¼¼ºï¿½ï¿½ï¿½
 	public EmpDTO selectById(int empid) {
 		EmpDTO emp = null;
  
@@ -371,7 +372,7 @@ public class EmpDAO_JDBC  implements EmpDAOInterface{
 		return emp;
 	}
 
-	// ¸ðµçÁ÷¿øÁ¶È¸
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¸
 	public List<EmpDTO> selectAll() {
 		List<EmpDTO> emplist = new ArrayList<>();
 		 

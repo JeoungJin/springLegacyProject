@@ -6,17 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
-
 public class DBUtil {
 	
 	 
 	
 	
-	//Oracle DB?—°ê²°ì„ Utilë¡? ë§Œë“¤?—ˆ?Œ 
+	//Oracle DB?ï¿½ï¿½ê²°ì„ Utilï¿½? ë§Œë“¤?ï¿½ï¿½?ï¿½ï¿½ 
 	public static Connection getConnection() {
 		Connection conn = null;
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -37,7 +32,7 @@ public class DBUtil {
 	}
 	
 	
-	//DB?—°ê²°ì‹œ ?‚¬?š©?•œ ??›?•´? œ 
+	//DB?ï¿½ï¿½ê²°ì‹œ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ 
 	public static void dbDisconnect(
 			 Connection conn, Statement st, ResultSet rs) {
 		

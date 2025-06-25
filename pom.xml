@@ -387,7 +387,7 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>3.3.2</version>
 				<configuration>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
+					<failOnMissingWebXml>false</failOnMissingWebXml><!-- JSP만 쓰는 경우 -->
 				</configuration>
 			</plugin>
 
