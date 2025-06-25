@@ -7,7 +7,7 @@
 	<artifactId>spring</artifactId>
 	<name>springLegacyProject</name>
 	<packaging>war</packaging>
-	<version>1.0.0-BUILD-SNAPSHOT</version>
+	<version>1.0</version>
 	<properties>
 		<java-version>11</java-version>
 		<org.springframework-version>5.3.5</org.springframework-version>
@@ -195,9 +195,7 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 			<version>${org.springframework-version}</version>
-			<!-- <exclusions> Exclude Commons Logging in favor of SLF4j <exclusion> 
-				<groupId>commons-logging</groupId> <artifactId>commons-logging</artifactId> 
-				</exclusion> </exclusions> -->
+	 
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -336,14 +334,7 @@
 			<version>5.12.0</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-junit-jupiter</artifactId>
-			<version>5.12.0</version>
-			<scope>test</scope>
-		</dependency>
-
-
+	 
 
 	</dependencies>
 

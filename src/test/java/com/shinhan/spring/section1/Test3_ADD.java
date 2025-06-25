@@ -20,36 +20,36 @@ import org.junit.jupiter.api.Test;
 public class Test3_ADD {
 
 	@Test
-	@DisplayName("배열")
+	@DisplayName("aa")
 	void f1() {
 		int[] arr1 = {1,2,3,4, 6};
 		int[] arr2 = {1,2,3,4, 6};		
-		assertArrayEquals(arr1, arr2, "배열이 동일해야한다.");		
+		assertArrayEquals(arr1, arr2, "aa");		
 	}
 	
 	@Test
-	@DisplayName("리스트1")
+	@DisplayName("bb")
 	void f2() {
 		List<String> expectList = Arrays.asList("A","B","C");
 		List<String> actualList = Arrays.asList("A","B","C" );
 		
-		assertIterableEquals(expectList, actualList, "List가 동일해야한다.");
+		assertIterableEquals(expectList, actualList, "List ");
 	}
 	
 	@Test
 	@Disabled
-	@DisplayName("리스트2")
+	@DisplayName("cc2")
 	void f3() {
 		List<String> expectList = Arrays.asList("A","B","C");
 		List<String> actualList = Arrays.asList("A","B","C");
 		
-		assertIterableEquals(expectList, actualList, "List가 동일해야한다.");
+		assertIterableEquals(expectList, actualList, "Listc.");
 	}
 	
-	//예외발생 test
+	//占쏙옙占쌤발삼옙 test
 	
 	@Test
-	@DisplayName("예외test")
+	@DisplayName("ddtest")
 	void f4() {
 		
 		Exception ex =  assertThrows(ArithmeticException.class, ()->{
@@ -62,7 +62,7 @@ public class Test3_ADD {
 	
  
 	@Test
-	@DisplayName("시간제약")
+	@DisplayName("ee")
 	void f5() {
 		assertTimeout(Duration.ofMillis(500), ()->{
 			Thread.sleep(60);
@@ -71,7 +71,7 @@ public class Test3_ADD {
 	
  
 	@Test
-	@DisplayName("여러개의 Assertion")
+	@DisplayName("ff Assertion")
 	void f6() {
 		assertAll(
 				()->assertEquals(4,  1+3),
@@ -83,9 +83,9 @@ public class Test3_ADD {
 	}
 	
 	@Test
-	@DisplayName("구현안됨")
+	@DisplayName("zz")
 	void f7() { 
-		fail("구현되지않음...무조건 실패");
+		fail("zz");
 	}
 	
 	

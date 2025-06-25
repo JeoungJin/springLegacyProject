@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.shinhan.spring.model.emp.EmpDTO;
 
-//Mockito에서 모킹 대상이므로 구현체는 필요 없음 
+//Mockito 
 public interface EmpRepositoryInterface {
    public EmpDTO findById(int empid);
    public List<EmpDTO> findAll();
