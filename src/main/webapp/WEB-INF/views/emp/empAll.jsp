@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>직원조회</title>
+<title>❤️👍😍직원조회❤️👍😍</title>
 <%@ include file="../common/header.jsp" %>
  <link rel="stylesheet" href="${cpath}/resources/css/empAll.css"> 
 <script src="${cpath}/resources/js/empAll.js"></script>
