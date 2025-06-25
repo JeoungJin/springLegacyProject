@@ -21,14 +21,24 @@ jobs:
 
     - name: Build WAR using Maven
       run: mvn clean package -Dmaven.test.skip=true --file pom.xml
-        
+
+    - name: Check WAR file exists
+      run: ls -lh target/
+    
+    - name: Upload WAR artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: spring-1.0.0.war
+        path: target/*.war    
+    
+    
     - name: Upload WAR to EC2
       uses: appleboy/scp-action@v0.1.4
       with:
         host: ${{ secrets.EC2_HOST }}
         username: ubuntu
         key: ${{ secrets.EC2_KEY }}
-        source: "target/spring-1.0.0.war"
+        source: "target/*.war"
         target: "/home/ubuntu/build/"
 
    
