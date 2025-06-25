@@ -31,15 +31,7 @@ jobs:
         source: "target/spring-1.0.0.war"
         target: "/home/ubuntu/build/"
 
-    - name: Upload properties files
-      uses: appleboy/scp-action@v0.1.4
-      with:
-        host: ${{ secrets.EC2_HOST }}
-        username: ubuntu
-        key: ${{ secrets.EC2_KEY }}
-        source: "config/*.properties"
-        target: "/home/ubuntu/config/"
-    
+   
 
 
     - name: Run deploy script
