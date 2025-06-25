@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.firstzone.dept">
+
+<!-- 이 부분은 칼럼이름과 DTO filed이름이 다른 경우  resultMap정의 -->
+<resultMap id="deptResult2" type="deptDTO">
+        <result property="department_id" column="department_id" />
+        <result property="department_name" column="department_name" />
+        <result property="manager_id" column="manager_id" />
+        <result property="location_id" column="location_id" />
+</resultMap> 
+
+<resultMap id="employeeResultMap" type="empDTO">
+    <id property="employee_id" column="employee_id" />
+    <result property="first_name" column="first_name" />
+    <result property="last_name" column="last_name" />
+    <result property="salary" column="salary" />
+</resultMap>
+
+<resultMap id="departmentWithEmployeesMap" type="deptDTO">
+    <id property="department_id" column="department_id" />
+    <result property="department_name" column="department_name" />
+    <result property="manager_id" column="manager_id" />
+    <result property="location_id" column="location_id" />
+    
+    <!-- 1:N 관계 매핑 -->
+    <collection property="empList" ofType="empDTO" resultMap="employeeResultMap"/>
+</resultMap>
+
+<select id="selectAlldeptWithemp" resultMap="departmentWithEmployeesMap">
+   select dept.*, emp.employee_id, emp.first_name, emp.last_name
+   from departments dept join employees emp using(department_id)
+   
+</select>
+
+
+
+
+  <!-- Mybatis가 select결과를 읽어서 resultType객체를 생성(기본생성자필수)하고 setting한다.(setter필수)  -->
+  <select id="selectAll" resultType="deptDTO">
+    select * from departments order by 1
+  </select>
+  
+  <select id="selectById"  parameterType="int" resultType="deptDTO">
+    select * from departments where department_id=#{aa}
+  </select>
+  
+  <insert id="insert" parameterType="deptDTO">
+  
+      insert into departments(department_id, department_name, manager_id, location_id  ) 
+      values( #{department_id}, #{department_name}, #{manager_id}, #{location_id} )
+  
+  </insert>
+  
+  <update id="update" parameterType="deptDTO">
+               update departments set  
+					department_name=#{department_name} ,
+					manager_id=#{manager_id} ,
+					location_id=#{location_id}
+                where department_id=#{department_id}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+         delete from departments where department_id=#{id}
+  
+  </delete>
+  
+  
+</mapper>
+
+
+
+

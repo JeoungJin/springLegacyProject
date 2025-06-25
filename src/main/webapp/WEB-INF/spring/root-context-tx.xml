@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	
+	<!-- 
+	root-context.xml 서비스/DAO/공통설정
+	비즈니스 계층, DAO 계층, 트랜잭션, AOP 등 공통 설정을 담당
+	Service, DAO, AOP 설정, 트랜잭션 매니저, Datasource, Aspect 설정 등
+	 -->
+	 <context:component-scan 
+	 base-package="com.shinhan.spring.model, com.shinhan.spring.aop, com.shinhan.spring.springjwt"/> 
+	 
+	 
+	 <aop:aspectj-autoproxy/> 
+   
+   
+   <!-- @Mapper -->
+   <mybatis-spring:scan base-package="com.shinhan.spring.model.clob,com.shinhan.spring.springjwt"/>
+ 
+ <!-- transaction처리를 위해 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource2"></property>
+	</bean>
+
+	<tx:annotation-driven
+		transaction-manager="transactionManager" />
+
+
+    <!-- transaction적용범위 지정 (advice) -->
+	<tx:advice id="txAdvice"
+		transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*" /> <!--메서드별로 제약조건 별도설정 가능 -->
+		</tx:attributes>
+	</tx:advice>
+
+
+		<!-- transaction pointcut지정 -->
+		<aop:config>
+		     <aop:advisor advice-ref="txAdvice" pointcut="execution(* aa(..))" />
+		</aop:config>
+
+ 
+ 
+</beans>

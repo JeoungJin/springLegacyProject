@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ 
+<mapper namespace="com.shinhan.spring.springjwt.MemberRepository">
+
+<resultMap id="memberMap" type="com.shinhan.spring.springjwt.MemberEntity">
+  <result property="mid" column="mid"/>
+  <result property="mname" column="mname"/>
+  <result property="mpassword" column="mpassword"/>
+  <result property="member_mrole_data" column="mrole" typeHandler="com.shinhan.spring.springjwt.MemberRoleTypeHandler"/>
+  <result property="refreshToken" column="refreshToken"/>
+</resultMap>
+
+
+	<select id="findByMid"  resultMap="memberMap">
+		select * from  memberJWT where mid = #{mid}
+	</select>
+ 
+	 <insert id="insert"  parameterType="com.shinhan.spring.springjwt.MemberEntity">
+		insert into  memberJWT (  mid, mname, mpassword, mrole, refreshToken ) 
+		values ( #{mid },#{mname },#{mpassword },#{member_mrole_data,typeHandler=com.shinhan.spring.springjwt.MemberRoleTypeHandler },#{refreshToken } )	
+	</insert>
+	
+	<update id="updateRefreshToken"  parameterType="com.shinhan.spring.springjwt.MemberEntity">
+		update  memberJWT set 
+		refreshToken =  #{refreshToken }
+		where mid = #{mid }  
+	</update>
+	
+	
+	
+</mapper>
+
+
+
+

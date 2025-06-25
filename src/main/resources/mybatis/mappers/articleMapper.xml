@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.shinhan.spring.model.clob.ArticleInterface">
+	<select id="selectAll"  resultType="articleDTO">
+		select * from article where id >= 5
+	</select>
+	
+	<select id="selectByCondition"  resultType="articleDTO">
+		select * from article 
+		where title like #{title}
+		or content like #{content}
+		or content is null
+	</select>
+	
+	
+	
+	<!-- #{content, jdbcType=CLOB} -->
+	<insert id="insert" parameterType="articleDTO">
+		insert into article
+		values( seq_article.nextval, #{title}, #{content} )
+	</insert>
+
+
+	<resultMap id="articleResultMap"
+		type="articleDTO">
+		<result property="id" column="id" />
+		<result property="title" column="title" />
+		<result property="content" column="content" jdbcType="CLOB" />
+	</resultMap>
+	
+	
+</mapper>
+
+
+
+

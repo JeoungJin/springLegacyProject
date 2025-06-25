@@ -1,0 +1,14 @@
+package com.shinhan.spring.section1;
+
+import java.util.List;
+
+import com.shinhan.spring.model.emp.EmpDTO;
+
+//Mockito에서 모킹 대상이므로 구현체는 필요 없음 
+public interface EmpRepositoryInterface {
+   public EmpDTO findById(int empid);
+   public List<EmpDTO> findAll();
+   public void insert(EmpDTO emp);
+   public void update(EmpDTO emp);
+   public void delete(int empid);
+}

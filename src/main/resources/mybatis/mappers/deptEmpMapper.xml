@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.firstzone.deptemp">
+
+
+<resultMap id="empDeptResultMap" type="com.shinhan.spring.model.emp.EmpDeptAssoDTO">
+    <id property="employee_id" column="employee_id"/>
+    <result property="first_name" column="first_name"/>
+    <result property="last_name" column="last_name"/>     
+    <!-- 연관된 Department 객체 매핑 -->
+    <association property="deptDTO" javaType="com.shinhan.spring.model.dept.DeptDTO">
+        <id property="department_id" column="department_id"/>
+        <result property="department_name" column="department_name"/>
+    </association>
+    
+    <!-- 연관된 Jobs 객체 매핑 -->
+    <association property="jobDTO" javaType="com.shinhan.spring.model.job.JobDTO">
+        <id property="jobId" column="job_id"/>
+        <result property="jobTitle" column="job_title"/>
+        <result property="minSalary" column="min_salary"/>
+        <result property="maxSalary" column="max_salary"/>
+    </association>    
+</resultMap>
+
+
+
+ <!--  2. 연관된 객체 매핑 -->
+ 
+ <select id="selectAllJoinAsso"  resultMap="empDeptResultMap">
+    SELECT 
+        d.department_id AS department_id,
+        d.department_name AS department_name,
+        e.employee_id AS employee_id,
+        e.first_name AS first_name,
+        e.last_name AS last_name,
+        j.job_id as job_id,
+        j.job_title as job_title,
+         j.min_salary   ,
+        j.max_salary  
+    FROM 
+        departments d
+     JOIN 
+        employees e ON d.department_id = e.department_id
+     JOIN jobs j ON e.job_id = j.job_id          
+ </select>
+  
+
+   <!--  1. Flat DTO로 모든 값을 한 객체에 담기 -->
+   <select id="selectAllJoinFlat" resultType="com.shinhan.spring.model.emp.EmpDeptFlatDTO">
+    SELECT 
+        d.department_id AS department_id,
+        d.department_name AS department_name,
+        e.employee_id AS employee_id,
+        e.first_name AS first_name,
+        e.last_name AS last_name 
+    FROM   departments d   JOIN  employees e ON d.department_id = e.department_id
+  </select>
+  
+   
+  
+</mapper>
+
+
+
+

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		 <setting name="logImpl" value="LOG4J" /> 
+		<!-- 칼럼의 값이 null오면 mybatis에서 칼럼의 타입으로 null처리
+		#{salary, jdbcType=INTEGER} 이런형태는 불편
+		  -->
+	    <setting name="jdbcTypeForNull" value="NULL" /> 
+	    <!-- <setting name="mapUnderscoreToCamelCase" value="true"/>   -->
+	</settings>
+	<!-- 별명을 등록한다.  -->
+	<typeAliases>
+		<typeAlias type="com.shinhan.spring.model.emp.EmpDTO" alias="empDTO" />
+		<typeAlias type="com.shinhan.spring.model.dept.DeptDTO" alias="deptDTO" />
+		<typeAlias type="com.shinhan.spring.model.job.JobDTO" alias="jobDTO" />
+		<typeAlias type="com.shinhan.spring.model.board.BoardDTO" alias="boardDTO" />
+		<typeAlias type="com.shinhan.spring.model.clob.ArticleDTO" alias="articleDTO" />
+	</typeAliases>
+
+
+</configuration>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.firstzone.emp">
+
+   <!-- Mybatis가 select결과를 읽어서 resultType객체를 생성(기본생성자필수}하고 setting한다.(setter필수}  -->
+  <select id="selectAll" resultType="empDTO">
+    select * from employees order by 1
+  </select>
+  
+  <select id="selectById"  parameterType="int" resultType="empDTO">
+    select * from employees where employee_id=#{aa}
+  </select>
+  
+  <select id="selectByDept" parameterType="int" resultType="empDTO">
+  select * from employees where department_id =#{deptid}
+  
+  </select>
+  
+  <select id="selectByJob" parameterType="string" resultType="empDTO">
+  select * from employees where job_id =#{job}
+  
+  </select>
+  <select id="selectByJobAndDept"    parameterType="map" resultType="empDTO">
+  select * from employees 
+  where job_id = #{jobid}
+  and department_id = #{deptid}
+  </select>
+  <!-- 동적SQL문장 
+  dept_id in (0) 이라면 SQL문을 제거하는 것이 바람직
+ 
+  and  job_id like '%' 전체조회라면 이렇게 문장을 쓰는것보다 제거하는 것이 바람직 
+  
+   
+   -->
+  <select id="selectByCondition" 
+  resultType="empDTO"
+  parameterType="com.shinhan.spring.model.emp.EmpRequestDTO">
+  select  *
+  from employees
+  where  salary >= #{salary} 
+  
+  <if test="jobid != 'all'">
+       and  job_id = #{jobid}
+  </if>
+  <!-- 
+  true이면 ALL이므로 조건없음
+  false이면 일자 조건조회 
+   -->
+  <if test="date_check == 'false' ">
+      and hire_date >=#{hire_date}
+  </if>
+   
+  <if test="deptid[0]!=0">
+     and department_id in 
+     <foreach collection="deptid"  item="aa" open="(" close=")" separator=",">
+          #{aa}
+     </foreach>
+  
+  </if>
+   
+     order by 1 asc 
+  </select>
+  
+  
+  <insert id="insert" parameterType="empDTO">
+              insert into employees(     EMPLOYEE_ID,   FIRST_NAME, 	  LAST_NAME, 
+					  EMAIL,  PHONE_NUMBER,   HIRE_DATE ,
+					  JOB_ID,  SALARY,   COMMISSION_PCT, 					  
+					  MANAGER_ID, 	 DEPARTMENT_ID  )
+					 values (  #{employee_id},   #{first_name}, 	  #{last_name}, 
+					  #{email},  #{phone_number},   #{hire_date} ,
+					  #{job_id},  #{salary, jdbcType=INTEGER},   #{commission_pct}, 					  
+					  #{manager_id}, 	 #{department_id}
+				     )
+  </insert>
+  
+  <update id="update" parameterType="empDTO">
+      update employees set
+					FIRST_NAME=#{first_name},
+					LAST_NAME= #{last_name},
+					EMAIL=#{email},
+					PHONE_NUMBER=#{phone_number},
+					HIRE_DATE=#{hire_date} ,
+					JOB_ID=#{job_id},
+					SALARY=#{salary},
+					COMMISSION_PCT=#{commission_pct},
+					MANAGER_ID=#{manager_id},
+					DEPARTMENT_ID=#{department_id}
+		where EMPLOYEE_ID=#{employee_id}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+      delete from employees where employee_id = #{empid}
+  </delete>
+  
+  
+</mapper>
+
+
+
+
