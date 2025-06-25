@@ -35,7 +35,8 @@
 		   <list>
 		     <!--  <value>/WEB-INF/spring/oracleDB.properties</value>
 		      <value>/WEB-INF/spring/mysqlDB.properties</value>   -->
-			  <value>/WEB-INF/spring/mariaDB.properties</value>  		       
+			  <!-- <value>/WEB-INF/spring/mariaDB.properties</value>  		 -->       
+			  <value>classpath:mariaDB.properties</value>
 		       <value>classpath:jwt.properties</value>
 		      <value>classpath:s3.properties</value>  
 		   </list>
