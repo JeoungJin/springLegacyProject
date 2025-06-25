@@ -38,7 +38,7 @@ public class EmpController {
 	final DeptService deptService;
 	
  
-	 //@ResponseBody »ý·«½Ã ¹«Á¶°Ç forward
+	 //@ResponseBody  
 	@GetMapping("/getEmpById.do")
 	public @ResponseBody  String f_empidChk( @RequestParam int empid) {
 		EmpDTO emp =   empService.selectById(empid);
@@ -53,7 +53,7 @@ public class EmpController {
 		//int i = 10/0;
 		
 		
-		//redirect½Ã ¹ÞÀº Á¤º¸¸¦ ¾ò±â
+		//redirect 
 		Map<String,?> flashMap = RequestContextUtils.getInputFlashMap(request);
 		if(flashMap!=null) {
 			model.addAttribute("resultMessage", flashMap.get("resultMessage"));
@@ -64,11 +64,7 @@ public class EmpController {
 		return "emp/empAll";
 	}
 	
-	/*
-	 * request : param(get¹æ½Ä), body(post¹æ½Ä)
-	 * JSON°ü·Ã¶óÀÌºê·¯¸®°¡ ¾øÀ¸¸é 
-	 * WARN : org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content type 'application/json;charset=UTF-8' not supported]
-	 */
+ 
 	
 	@PostMapping("/selectByCondition2.do")	
 	public  String f_condition2( @RequestBody EmpRequestDTO  data, Model model ) throws IOException {
@@ -122,11 +118,11 @@ public class EmpController {
         for(String key :data.keySet()) {     	 
         	System.out.println(key + ":" + data.get(key));
         }
-        //0.À­ºÎºÐ : json¹Þ±â(¹®ÀÚ).. "{    }"
-		//1.JSONÀ» Object·Î ¹Ù²Û´Ù.(parse) .....JacksonÀÌ ¿©±â±îÁö ÀÚµ¿À¸·Î ÇÔ 
-        //2.ÇØ´ç dataÃßÃâÇÑ´Ù.
-        //3.Á¶°ÇÁ¶È¸
-        //4.°á°ú¸¦ jspÆäÀÌÁö·Î forwardÇÏ¿© HTML·Î ¸¸µçÈÄ ajaxÈ£Ãâ·Î°£´Ù. 
+        //0.ï¿½ï¿½ï¿½Îºï¿½ : jsonï¿½Þ±ï¿½(ï¿½ï¿½ï¿½ï¿½).. "{    }"
+		//1.JSONï¿½ï¿½ Objectï¿½ï¿½ ï¿½Ù²Û´ï¿½.(parse) .....Jacksonï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ 
+        //2.ï¿½Ø´ï¿½ dataï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+        //3.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¸
+        //4.ï¿½ï¿½ï¿½ï¿½ï¿½ jspï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ forwardï¿½Ï¿ï¿½ HTMLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ajaxÈ£ï¿½ï¿½Î°ï¿½ï¿½ï¿½. 
 		return "emp/empByCondition";
 	}
 	
@@ -143,17 +139,17 @@ public class EmpController {
         
         String json = jsonBuilder.toString();
         System.out.println(json);
-        //0.À­ºÎºÐ : json¹Þ±â(¹®ÀÚ).. "{    }"
-		//1.JSONÀ» Object·Î ¹Ù²Û´Ù.(parse)
-        //2.ÇØ´ç dataÃßÃâÇÑ´Ù.
-        //3.Á¶°ÇÁ¶È¸
-        //4.°á°ú¸¦ jspÆäÀÌÁö·Î forwardÇÏ¿© HTML·Î ¸¸µçÈÄ ajaxÈ£Ãâ·Î°£´Ù. 
+        //0.ï¿½ï¿½ï¿½Îºï¿½ : jsonï¿½Þ±ï¿½(ï¿½ï¿½ï¿½ï¿½).. "{    }"
+		//1.JSONï¿½ï¿½ Objectï¿½ï¿½ ï¿½Ù²Û´ï¿½.(parse)
+        //2.ï¿½Ø´ï¿½ dataï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+        //3.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¸
+        //4.ï¿½ï¿½ï¿½ï¿½ï¿½ jspï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ forwardï¿½Ï¿ï¿½ HTMLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ajaxÈ£ï¿½ï¿½Î°ï¿½ï¿½ï¿½. 
 		return "emp/empByCondition";
 	}
 	
 	
 	/*
-	 * // 1. JSON µ¥ÀÌÅÍ ÀÐ±â
+	 * // 1. JSON ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð±ï¿½
         BufferedReader reader = request.getReader();
         StringBuilder jsonBuilder = new StringBuilder();
         String line;
@@ -206,7 +202,7 @@ public class EmpController {
 		
 		
 		
-		//		// 1. JSON µ¥ÀÌÅÍ ÀÐ±â
+		//		// 1. JSON ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð±ï¿½
 //        BufferedReader reader = request.getReader();
 //        StringBuilder jsonBuilder = new StringBuilder();
 //        String line;

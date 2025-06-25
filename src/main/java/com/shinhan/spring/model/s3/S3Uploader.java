@@ -2,6 +2,8 @@ package com.shinhan.spring.model.s3;
 
 import java.io.InputStream;
 
+import javax.annotation.PreDestroy;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -40,7 +42,14 @@ public class S3Uploader {
         
         InputStream is = file.getInputStream();
         s3.putObject(bucket, fileName, is, metadata);
-        return s3.getUrl(bucket, fileName).toString();  // S3 °ø°³ URL
+        return s3.getUrl(bucket, fileName).toString();  // S3 ï¿½ï¿½ï¿½ï¿½ URL
     }
+    @PreDestroy
+    public void shutdown() {
+        if (s3 != null) {
+        	s3.shutdown();
+        }
+    }
+    
 }
 
