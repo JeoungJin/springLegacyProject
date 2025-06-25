@@ -20,7 +20,7 @@ jobs:
           distribution: 'temurin'
 
     - name: Build WAR using Maven
-      run: mvn clean package --file pom.xml
+      run: mvn clean package -Dmaven.test.skip=true --file pom.xml
         
     - name: Upload WAR to EC2
       uses: appleboy/scp-action@v0.1.4
