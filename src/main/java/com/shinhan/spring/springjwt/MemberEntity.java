@@ -14,7 +14,7 @@ public class MemberEntity {
 	    private String mid;     // memberId
 	    private String mname;   // member name
 	    private String mpassword;
-	    private MemberRoleEnum member_mrole_data;   // member role (ex: USER, ADMIN µî)
+	    private MemberRoleEnum member_mrole_data;   // member role (ex: USER, ADMIN  )
 	    private String refreshToken;
 	    
 }

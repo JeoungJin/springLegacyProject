@@ -9,11 +9,11 @@ import org.springframework.util.FileCopyUtils;
 
 import net.coobird.thumbnailator.Thumbnails;
 public class UploadFileUtils {
-	// 썸네일 이미지 크기
+ 
 	static final int THUMB_WIDTH = 300;
 	static final int THUMB_HEIGHT = 300;
 
-	// 파일 업로드
+	 
 	//A user : apple.jpg
 	//B user : apple.jpg
 	public static String fileUpload(String uploadPath, 
@@ -24,19 +24,19 @@ public class UploadFileUtils {
 		 
 		String imgPath = uploadPath + ymdPath;
 		File target = new File(imgPath, newFileName);
-		FileCopyUtils.copy(fileData, target);//이미지저장
+		FileCopyUtils.copy(fileData, target); 
 		String thumbFileName = "s_" + newFileName;
 		//File.separator : /
 		File image = new File(imgPath + File.separator + newFileName);
 		File thumbnail = new File(imgPath + File.separator + "s" + File.separator + thumbFileName);
 		if (image.exists()) {
 			thumbnail.getParentFile().mkdirs();
-			Thumbnails.of(image).size(THUMB_WIDTH, THUMB_HEIGHT).toFile(thumbnail);//thumbnail저장
+			Thumbnails.of(image).size(THUMB_WIDTH, THUMB_HEIGHT).toFile(thumbnail);//thumbnail占쏙옙占쏙옙
 		}
 		return newFileName;
 	}
 
-	// 폴더이름 및 폴더 생성
+ 
 	public static String calcPath(String uploadPath) {
 		Calendar cal = Calendar.getInstance();
 		String yearPath = File.separator + cal.get(Calendar.YEAR);
@@ -52,7 +52,7 @@ public class UploadFileUtils {
 		return datePath;
 	}
 
-	// 폴더 생성
+ 
 	private static void makeDir(String uploadPath, String... paths) {
 		if (new File(paths[paths.length - 1]).exists())
 			return;

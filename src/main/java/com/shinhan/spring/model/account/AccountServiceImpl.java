@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Transactional(propagation = Propagation.REQUIRED) // tracsaction 전파규칙 설정
+@Transactional(propagation = Propagation.REQUIRED)  
 public class AccountServiceImpl {
 	@Autowired
 	AccountDAOMybatis dao;

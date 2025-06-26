@@ -12,8 +12,8 @@ public class SessionInitController {
 
     @GetMapping(value = "/session-init", produces = "text/plain;charset=utf-8")
     public ResponseEntity<String> init(HttpServletRequest request) {
-        HttpSession session = request.getSession(true); // 技记 碍力 积己
-        session.setAttribute("userId", "fromJs"); // 抛胶飘侩 蔼
-        return ResponseEntity.ok("技记 积己凳");
+        HttpSession session = request.getSession(true);  
+        session.setAttribute("userId", "fromJs");  
+        return ResponseEntity.ok("session init OK");
     }
 }

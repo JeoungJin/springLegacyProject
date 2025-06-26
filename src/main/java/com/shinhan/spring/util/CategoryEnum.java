@@ -7,13 +7,13 @@ import lombok.Getter;
 @AllArgsConstructor 
 public enum CategoryEnum {
  
-	CLOTH(1, "¿Ê"), BAG(2, "°¡¹æ");
+	CLOTH(1, "ì˜·"), BAG(2, "ê°€ë°©");
 	
 	private final int code;
     private final String name;
  
     
- // ÄÚµå°ªÀ¸·Î enum Ã£±â
+ 
     public static CategoryEnum fromCode(int code) {
         for (CategoryEnum category : CategoryEnum.values()) {
             if (category.getCode() == code) {
@@ -23,7 +23,7 @@ public enum CategoryEnum {
         throw new IllegalArgumentException("Invalid code: " + code);
     }
 
-    // ÀÌ¸§À¸·Î enum Ã£±â
+    // ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ enum Ã£ï¿½ï¿½
     public static CategoryEnum fromName(String name) {
         try {
             return CategoryEnum.valueOf(name.toUpperCase());

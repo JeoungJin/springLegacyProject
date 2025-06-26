@@ -13,8 +13,8 @@ public class ArticleDTO {
     private int id;
     private String title;
     
-    // Oracle CLOB 컬럼과 매핑되는 필드
-    private String content; // CLOB → String
+    //  
+    private String content; //  
 
  
 }

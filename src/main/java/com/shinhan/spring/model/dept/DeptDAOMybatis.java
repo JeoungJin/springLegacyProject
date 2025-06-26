@@ -24,7 +24,7 @@ public class DeptDAOMybatis implements DeptDAOInterface{
 	public List<DeptDTO> selectAll() {
 		List<DeptDTO> deptlist = sqlSession.selectList(namespace + "selectAll");
 		System.out.println("------------------------");
-		log.info( deptlist.size() + "건 조회됨(롬복Slf4j)");
+		log.info( deptlist.size() + "size");
 		return deptlist;
 	}
 
@@ -38,21 +38,21 @@ public class DeptDAOMybatis implements DeptDAOInterface{
 	@Override
 	public int insertDept(DeptDTO dept) {
 		int result = sqlSession.insert(namespace + "insert", dept);
-		log.info( result  + "입력(Mybatis)" );
+		log.info( result  + " (Mybatis)" );
 		return result;
 	}
 
 	@Override
 	public int updateDept(DeptDTO dept) {
 		int result = sqlSession.update(namespace + "update", dept);
-		log.info( result  + "수정(Mybatis)" );
+		log.info( result  + " (Mybatis)" );
 		return result;
 	}
 
 	@Override
 	public int deleteDept(int deptid) {
 		int result = sqlSession.update(namespace + "delete", deptid);
-		log.info( result  + "삭제(Mybatis)" );
+		log.info( result  + " (Mybatis)" );
 		return result;
 	}
 
@@ -60,7 +60,7 @@ public class DeptDAOMybatis implements DeptDAOInterface{
 	public List<DeptDTO> selectAlldeptWithemp() {
 		List<DeptDTO> deptlist = sqlSession.selectList(namespace + "selectAlldeptWithemp");
 		System.out.println("------------------------");
-		log.info( deptlist.size() + "건 조회됨(롬복Slf4j)");
+		log.info( deptlist.size() + " Slf4j)");
 		return deptlist;
 	}
 

@@ -10,8 +10,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import lombok.RequiredArgsConstructor;
 
-//Spring Security 없이 사용할 경우 (Interceptor 기반)
-@Component
+ @Component
 @RequiredArgsConstructor
 public class JwtAuthenticationInterceptor implements HandlerInterceptor {
 
@@ -29,11 +28,10 @@ public class JwtAuthenticationInterceptor implements HandlerInterceptor {
             if (jwtUtil.validateToken(token)) {
                 String mid = jwtUtil.getUserId(token);
                 MemberEntity member = memberService.findByMidOnly(mid);
-                // 로그인 사용자 정보를 request에 저장
-                request.setAttribute("loginMember", member);
+                   request.setAttribute("loginMember", member);
             }
         }
 
-        return true; // 계속 진행
+        return true; 
     }
 }

@@ -11,7 +11,7 @@ public class DBUtil {
 	 
 	
 	
-	//Oracle DB?��결을 Util�? 만들?��?�� 
+	 
 	public static Connection getConnection() {
 		Connection conn = null;
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -32,7 +32,7 @@ public class DBUtil {
 	}
 	
 	
-	//DB?��결시 ?��?��?�� ?��?��?��?�� 
+	 
 	public static void dbDisconnect(
 			 Connection conn, Statement st, ResultSet rs) {
 		

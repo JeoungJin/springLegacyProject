@@ -24,25 +24,17 @@ import com.shinhan.spring.util.DBUtil;
 import com.shinhan.spring.util.DateUtil;
 
  
-
-
-
-//DAO(Data Access Object) : DB�� CRUD�۾�(select, Insert, update, delete)
-//Statement�� SQL���� ������ ��� ...���ε����� ������������ 
-//PreparedStatement : Statement��ӹ���, ���ε����� ����, spȣ�� ��������
-//CallableStatement :spȣ�� ����
-
-
+ 
 @Repository
 public class EmpDAO_JDBC  implements EmpDAOInterface{
 
-	@Autowired  //Ÿ���� ������ �ڵ����� �����Ѵ�. (new�ؼ� Injection)
-	//@Qualifier("dataSourceOriginal")   //����Ÿ���� �������� ��� �̸��� ����Ѵ�. 
+	@Autowired   
+	 
 	DataSource ds;
 	
 	Connection conn;
 	
-	// Stored Procedure�� �����ϱ� (������ȣ�� �޾Ƽ� �̸��ϰ� �޿��� return)
+	 
 	public EmpDTO execute_sp(int empid) {
 		EmpDTO emp = null;
 		
@@ -171,7 +163,7 @@ public class EmpDAO_JDBC  implements EmpDAOInterface{
 		return result;
 	}
 
-	// �Է�
+ 
 	public int empInsert(EmpDTO emp) {
 		int result = 0;
 		 
@@ -211,7 +203,7 @@ public class EmpDAO_JDBC  implements EmpDAOInterface{
 		return result;
 	}
 
-	// ����
+ 
 	public int empDeleteById(int empid) {
 		int result = 0;
 		 
@@ -244,8 +236,8 @@ public class EmpDAO_JDBC  implements EmpDAOInterface{
 
 		try {
 			conn = ds.getConnection();
-			st = conn.prepareStatement(sql); // SQL���� �غ��Ѵ�.
-			st.setString(1, "%" + jobid + "%"); // 1��° ?�� ���� setting�Ѵ�.
+			st = conn.prepareStatement(sql);  
+			st.setString(1, "%" + jobid + "%");  
 			st.setInt(2, salary);
 			Date d = DateUtil.convertToSQLDate(DateUtil.convertToDate(hdate));
 			st.setDate(3, d);
@@ -277,14 +269,12 @@ public class EmpDAO_JDBC  implements EmpDAOInterface{
 		String sql = "select * from employees where job_id = ? and department_id = ?";
 		try {
 			conn = ds.getConnection();
-			st = conn.prepareStatement(sql); // SQL���� �غ��Ѵ�.
-			st.setString(1, job); // 1��° ?�� ���� setting�Ѵ�.
+			st = conn.prepareStatement(sql);  
+			st.setString(1, job);  
 			st.setInt(2, dept);
 			
 			String sqlPreview = DBUtil.buildDebugSQL(sql, job,dept);
-			System.out.println("SQL��:" + sqlPreview);
-			
-			
+		 		
 			rs = st.executeQuery();
 			while (rs.next()) {
 				EmpDTO emp = makeEmp(rs);
@@ -298,8 +288,7 @@ public class EmpDAO_JDBC  implements EmpDAOInterface{
 		}
 		return emplist;
 	}
-
-	// job���� ������ȸ
+ 
 	public List<EmpDTO> selectByJob(String job) {
 		List<EmpDTO> emplist = new ArrayList<>();
 		 
@@ -308,8 +297,8 @@ public class EmpDAO_JDBC  implements EmpDAOInterface{
 		String sql = "select * from employees where job_id = ? ";
 		try {
 			conn = ds.getConnection();
-			st = conn.prepareStatement(sql); // SQL���� �غ��Ѵ�.
-			st.setString(1, job); // 1��° ?�� ���� setting�Ѵ�.
+			st = conn.prepareStatement(sql); 
+			st.setString(1, job);  
 			rs = st.executeQuery();
 			while (rs.next()) {
 				EmpDTO emp = makeEmp(rs);
@@ -324,7 +313,7 @@ public class EmpDAO_JDBC  implements EmpDAOInterface{
 		return emplist;
 	}
 
-	// �μ��� ������ȸ
+	 
 	public List<EmpDTO> selectByDept(int deptid) {
 		List<EmpDTO> emplist = new ArrayList<>();
 		 
@@ -348,7 +337,7 @@ public class EmpDAO_JDBC  implements EmpDAOInterface{
 		return emplist;
 	}
 
-	// ������ȣ�� ���������� �󼼺���
+	 
 	public EmpDTO selectById(int empid) {
 		EmpDTO emp = null;
  
@@ -371,8 +360,7 @@ public class EmpDAO_JDBC  implements EmpDAOInterface{
 		}
 		return emp;
 	}
-
-	// ���������ȸ
+ 
 	public List<EmpDTO> selectAll() {
 		List<EmpDTO> emplist = new ArrayList<>();
 		 

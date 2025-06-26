@@ -26,15 +26,13 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             String token = authorizationHeader.substring(7);
 
             if (jwtUtil.validateToken(token)) {
-                // JWT에서 userId 추출
+ 
                 String mid = jwtUtil.getUserId(token);
 
-                // DB 또는 메모리에서 사용자 정보 조회
-               MemberEntity member = memberService.findByMidOnly(mid);  // findByUserId는 사용자 정의
+                         MemberEntity member = memberService.findByMidOnly(mid);   
 
                 if (member != null) {
-                    // 컨트롤러에서 사용할 수 있도록 request에 사용자 정보 주입
-                    request.setAttribute("loginMember", member);
+                        request.setAttribute("loginMember", member);
                 }
             }
         }

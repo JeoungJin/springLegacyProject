@@ -9,8 +9,7 @@ public class Calculator {
     public int subtract(int a, int b) {
         return a - b;
     }
-
-    // multiply는 아직 구현되지 않음
+ 
     public int multiply(int a, int b) {
         throw new UnsupportedOperationException("Not implemented");
     }

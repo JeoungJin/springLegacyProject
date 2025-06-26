@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 public class DeptDTO {
 	private Integer department_id;    
 	private String department_name;  
-	private Integer manager_id;       //기본형은 null을 넣을수없다 
+	private Integer manager_id;      
 	private Integer location_id;      
 	
 	List<EmpDTO> empList;

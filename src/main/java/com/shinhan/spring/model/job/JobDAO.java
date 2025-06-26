@@ -15,9 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-/**
- * JobDAO 클래스는 Jobs 테이블에 대한 데이터베이스 작업을 수행합니다.
- */
+ 
 
 @Repository
 public class JobDAO {
@@ -27,11 +25,7 @@ public class JobDAO {
 	DataSource ds;
 	
 	
-    /**
-     * 모든 Job 데이터를 조회합니다.
-     * 
-     * @return JobDTO 리스트
-     */
+    
     public List<JobDTO> getAllJobs() {
         List<JobDTO> jobs = new ArrayList<>();
         String query = "SELECT * FROM jobs";
@@ -54,12 +48,7 @@ public class JobDAO {
         return jobs;
     }
 
-    /**
-     * 새로운 Job 데이터를 추가합니다.
-     * 
-     * @param job JobDTO 객체
-     * @return 성공 여부
-     */
+    
     public boolean addJob(JobDTO job) {
         String query = "INSERT INTO jobs (job_id, job_title, min_salary, max_salary) VALUES (?, ?, ?, ?)";
 
@@ -78,12 +67,7 @@ public class JobDAO {
         return false;
     }
 
-    /**
-     * 기존 Job 데이터를 수정합니다.
-     * 
-     * @param job JobDTO 객체
-     * @return 성공 여부
-     */
+    
     public boolean updateJob(JobDTO job) {
         String query = "UPDATE jobs SET job_title = ?, min_salary = ?, max_salary = ? WHERE job_id = ?";
 
@@ -102,12 +86,7 @@ public class JobDAO {
         return false;
     }
 
-    /**
-     * Job 데이터를 삭제합니다.
-     * 
-     * @param jobId Job ID
-     * @return 성공 여부
-     */
+     
     public boolean deleteJob(String jobId) {
         String query = "DELETE FROM jobs WHERE job_id = ?";
 

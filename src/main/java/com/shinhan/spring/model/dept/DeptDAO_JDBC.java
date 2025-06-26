@@ -18,24 +18,24 @@ import com.shinhan.spring.util.DBUtil;
  
 
 
-@Repository //@Componet + DAO���� 
+@Repository 
 //@Setter
 public class DeptDAO_JDBC implements DeptDAOInterface{
 	
 	
-	//Ÿ���� ������ �ڵ����� �����Ѵ�. 
+	 
 	@Autowired
 	//@Qualifier("dataSourceOriginal")  
 	DataSource ds;
 	
-	//DB����, ������ ���
+	 
 	Connection conn;
-	//SQL���� DB�� ����
+ 
 	Statement st;
 	PreparedStatement pst;
-	//Select���
+ 
 	ResultSet rs;
-	//insert,delete,update����� ������� �Ǽ� 
+ 
 	int resultCount;
 	
 	static final String SELECT_ALL = "select * from departments order by 1";
@@ -46,7 +46,7 @@ public class DeptDAO_JDBC implements DeptDAOInterface{
 								+ " where department_id=?";
 	static final String DELETE = "delete from departments where department_id=?";
 	
-	//1.Select(Read)..��κ��� 
+ 
 	public List<DeptDTO> selectAll() {
 		List<DeptDTO> deptlist = new ArrayList<DeptDTO>();
 		//conn = DBUtil.getConnection();
@@ -67,7 +67,7 @@ public class DeptDAO_JDBC implements DeptDAOInterface{
 		
 		return deptlist;
 	}
-	//2.Select(Read)..�󼼺���
+	 
 	public DeptDTO selectById(int deptid) {
 		DeptDTO dept = null;
 		//conn = DBUtil.getConnection();

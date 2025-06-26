@@ -42,7 +42,7 @@ public class S3Uploader {
         
         InputStream is = file.getInputStream();
         s3.putObject(bucket, fileName, is, metadata);
-        return s3.getUrl(bucket, fileName).toString();  // S3 ���� URL
+        return s3.getUrl(bucket, fileName).toString();   
     }
     @PreDestroy
     public void shutdown() {

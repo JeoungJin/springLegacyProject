@@ -27,39 +27,39 @@ public class EmpDAOMybatis implements EmpDAOInterface {
 	@Override
 	public int empUpdate(EmpDTO emp) {
 		int result = sqlSession.update(namespace + "update", emp);
-		log.info(result+ "°Ç updateµÊ(Mybatis) ");
+	 
 		return result;
 	}
 
 	@Override
 	public int empUpdate2(EmpDTO emp) {
 		int result = sqlSession.update(namespace + "update", emp);
-		log.info(result+ "°Ç updateµÊ(Mybatis) ");
+	 
 		return result;
 	}
 
 	@Override
 	public int empInsert(EmpDTO emp) {
 		int result = sqlSession.delete(namespace + "insert", emp);
-		log.info(result+ "°Ç ÀÔ·ÂµÊ(Mybatis) ");
+	 
 		return result;
 	}
 
 	@Override
 	public int empDeleteById(int empid) {
 		int result = sqlSession.delete(namespace + "delete", empid);
-		log.info(result+ "°Ç »èÁ¦µÊ(Mybatis) ");
+		log.info(result+ "ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(Mybatis) ");
 		return result;
 	}
 
-	//interface°¡ ±¸ÇöµÇ¾îÀÖÀ¸¹Ç·Î ¹Ýµå½Ã ±¸ÇöÇÑ´Ù..... 
+	//interfaceï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½Ýµï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½..... 
 	@Override
 	public List<EmpDTO> selectByCondition(Integer[] arr, String jobid, int salary, 
 			String hdate ) {
 	   
 		return null;
 	}
-	//µ¿ÀûSQL¹® ¿¬½ÀÀ» À§ÇØ À§ÀÇ ÇÔ¼ö°¡ ¼öÁ¤µÊ 
+	//ï¿½ï¿½ï¿½ï¿½SQLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	public List<EmpDTO> selectByCondition(Integer[] arr, String jobid, int salary, 
 			String hdate, String date_check) {
 	    EmpRequestDTO dto = EmpRequestDTO.builder()
@@ -70,9 +70,9 @@ public class EmpDAOMybatis implements EmpDAOInterface {
 	    		.date_check(date_check)
 	    		.build();
 	    List<EmpDTO> emplist = sqlSession.selectList(namespace + "selectByCondition", dto);
-	    log.debug(emplist.size() + "°ÇÁ¶È¸µÊ(Mybatis)....debug ");
-	    log.info(emplist.size() + "°ÇÁ¶È¸µÊ(Mybatis)....info ");	
-		log.warn(emplist.size() + "°ÇÁ¶È¸µÊ(Mybatis)....warn ");
+	    log.debug(emplist.size() + "ï¿½ï¿½ï¿½ï¿½È¸ï¿½ï¿½(Mybatis)....debug ");
+	    log.info(emplist.size() + "ï¿½ï¿½ï¿½ï¿½È¸ï¿½ï¿½(Mybatis)....info ");	
+		log.warn(emplist.size() + "ï¿½ï¿½ï¿½ï¿½È¸ï¿½ï¿½(Mybatis)....warn ");
 		return emplist;
 	}
 	
@@ -82,28 +82,28 @@ public class EmpDAOMybatis implements EmpDAOInterface {
 	    mapData.put("jobid", job);
 	    mapData.put("deptid", dept);
 		List<EmpDTO> emplist = sqlSession.selectList(namespace + "selectByJobAndDept", job);
-		log.info(emplist.size() + "°ÇÁ¶È¸µÊ(Mybatis) ");
+		log.info(emplist.size() + "ï¿½ï¿½ï¿½ï¿½È¸ï¿½ï¿½(Mybatis) ");
 		return emplist;
 	}
 
 	@Override
 	public List<EmpDTO> selectByJob(String job) {
 		List<EmpDTO> emplist = sqlSession.selectList(namespace + "selectByJob", job);
-		log.info(emplist.size() + "°ÇÁ¶È¸µÊ(Mybatis) ");
+		log.info(emplist.size() + "ï¿½ï¿½ï¿½ï¿½È¸ï¿½ï¿½(Mybatis) ");
 		return emplist;
 	}
 
 	@Override
 	public List<EmpDTO> selectByDept(int deptid) {
 		List<EmpDTO> emplist = sqlSession.selectList(namespace + "selectByDept", deptid);
-		log.info(emplist.size() + "°ÇÁ¶È¸µÊ(Mybatis) ");
+		log.info(emplist.size() + "ï¿½ï¿½ï¿½ï¿½È¸ï¿½ï¿½(Mybatis) ");
 		return emplist;
 	}
 
 	@Override
 	public EmpDTO selectById(int empid) {
 		EmpDTO emp = sqlSession.selectOne(namespace + "selectById", empid);
-		log.info(emp!=null?emp.toString():"0°Ç" + " Á¶È¸µÊ(Mybatis) ");
+		log.info(emp!=null?emp.toString():"0ï¿½ï¿½" + " ï¿½ï¿½È¸ï¿½ï¿½(Mybatis) ");
 		return emp;
 	}
 
@@ -111,7 +111,7 @@ public class EmpDAOMybatis implements EmpDAOInterface {
 	public List<EmpDTO> selectAll() {
 		List<EmpDTO> emplist = sqlSession.selectList(namespace + "selectAll");
 
-		log.info(emplist.size() + "°ÇÁ¶È¸µÊ(Mybatis) ");
+		log.info(emplist.size() + "ï¿½ï¿½ï¿½ï¿½È¸ï¿½ï¿½(Mybatis) ");
 		return emplist;
 	}
 

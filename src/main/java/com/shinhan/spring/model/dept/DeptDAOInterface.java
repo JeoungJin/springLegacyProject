@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Map;
  
 public interface DeptDAOInterface {
- 	//1.Select(Read)..모두보기 
+ 	//1.Select(Read 
 	public List<DeptDTO> selectAll() ;
-	//2.Select(Read)..상세보기
+	//2.Select(Read) 
 	public DeptDTO selectById(int deptid) ;
 	//3.Inert
 	public int insertDept(DeptDTO dept);

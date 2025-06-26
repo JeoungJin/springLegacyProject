@@ -57,7 +57,7 @@ $(function(){
     <hr>
 	  
 	 	
-<h1 class="title">직원목록</h1>
+<h1 class="title">😁😁😁직원목록😁😁😁</h1>
 <a class="btn btn-success" href="${cpath}/emp/empinsert.do">신규직원등록</a>
 <hr>
 

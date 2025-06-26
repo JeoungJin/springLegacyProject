@@ -18,13 +18,13 @@ public class EmpDAOMybatisJoin  {
 
 	public List<EmpDeptFlatDTO> selectAllJoinFlat() {
 		List<EmpDeptFlatDTO> emplist = sqlSession.selectList(namespace + "selectAllJoinFlat");
-		log.info(emplist.size() + "°ÇÁ¶È¸µÊ(Mybatis) ");
+	 
 		return emplist;
 	}
 
 	public List<EmpDeptAssoDTO> selectAllJoinAsso() {
 		List<EmpDeptAssoDTO> emplist = sqlSession.selectList(namespace + "selectAllJoinAsso");
-		log.info(emplist.size() + "°ÇÁ¶È¸µÊ(Mybatis) ");
+	 
 		return emplist;
 	}
 	

@@ -16,25 +16,21 @@ import org.springframework.stereotype.Repository;
 
 import com.shinhan.spring.util.DBUtil;
 
-//비지니스 로직(업무로직)중에서 데이터베잇 관련업무는 DAO에서 작성한다. 
-//CRUD작업 
-//DAO(Data Access Object)
-
+ 
 @Repository
 public class BoardDAO {
 	
 	@Autowired
 	//@Qualifier("dataSourceOriginal")  
 	DataSource ds;
-	
-	//DB연결, 해제시 사용
+ 
 	Connection conn;
-	//SQL문을 DB에 전송
+ 
 	Statement st;
 	PreparedStatement pst;
-	//Select결과
+ 
 	ResultSet rs;
-	//insert,delete,update결과는 영향받은 건수 
+ 
 	int resultCount;
 	
 	static final String SELECT_ALL = "select * from board";
@@ -42,7 +38,7 @@ public class BoardDAO {
 	//static final String INSERT = "insert into board values(seq_board.nextval,?,?,?,?,?)";
 	static final String INSERT = "insert into board(title, content, writer, pic1, pic2) values(?,?,?,?,?)";
 	
-	//1.Select(Read)..모두보기 
+	//1.Select(Read).. 
 	public List<BoardDTO> selectAll() {
 		List<BoardDTO> blist = new ArrayList<BoardDTO>();
 		
@@ -62,7 +58,7 @@ public class BoardDAO {
 		
 		return blist;
 	}
-	//2.Select(Read)..상세보기
+	//2.Select(Read).. 
 	public BoardDTO selectById(int bno) {
 		BoardDTO board = null;
 		 
