@@ -40,9 +40,9 @@ public class AnotherController {
 	@GetMapping("/a")
 	public String f1() {
 		RestTemplate restTemplate = new RestTemplate();
-		String url = "http://192.168.0.2:9999/bank/api/a";
+		String url = "http://192.168.0.16:9999/bank/api/a";
 
-		// GET ¿äÃ»
+		// GET ï¿½ï¿½Ã»
 		String response = restTemplate.getForObject(url, String.class);
 		System.out.println(response);
 		return "get OK";
@@ -50,9 +50,9 @@ public class AnotherController {
 	@GetMapping("/b")
 	public String f2() {
 		RestTemplate restTemplate = new RestTemplate();
-		String url = "http://192.168.0.2:9999/bank/api/b";
+		String url = "http://192.168.0.16:9999/bank/api/b";
 
-	 	// POST ¿äÃ»
+	 	// POST ï¿½ï¿½Ã»
 		Map<String, String> requestBody = new HashMap<>();
 		requestBody.put("name", "Jeoung");
 		requestBody.put("age", "28");
